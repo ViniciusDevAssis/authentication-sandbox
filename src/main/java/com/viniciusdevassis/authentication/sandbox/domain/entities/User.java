@@ -25,6 +25,8 @@ public class User implements UserDetails {
     private String name;
     private String email;
     private String password;
+
+    @Setter
     private UUID businessId;
 
     public static User newUser(String name, String email, String password) {

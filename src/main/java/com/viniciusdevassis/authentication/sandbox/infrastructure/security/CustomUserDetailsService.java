@@ -9,10 +9,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
-public class CustomUserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository repository;
 
@@ -25,7 +26,7 @@ public class CustomUserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),
-                new ArrayList<>()
+                Collections.emptyList()
         );
     }
 }

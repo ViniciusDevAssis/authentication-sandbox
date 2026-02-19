@@ -23,7 +23,7 @@ public class TokenService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
-                    .withIssuer("Ficha Musical")
+                    .withIssuer("authentication sandbox")
                     .withSubject(user.getEmail())
                     .withExpiresAt(this.generateExpirationDate())
                     .sign(algorithm);
@@ -36,7 +36,7 @@ public class TokenService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
-                    .withIssuer("Ficha Musical")
+                    .withIssuer("authentication sandbox")
                     .build()
                     .verify(token)
                     .getSubject();

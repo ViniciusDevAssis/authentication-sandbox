@@ -20,4 +20,12 @@ public class Business {
     private UUID id;
     private String name;
     private String email;
+
+    public static Business newBusiness(String name, String email) {
+        Business business = new Business();
+        business.setId(UUID.randomUUID());
+        business.setName(name);
+        business.setEmail(email);
+        return business;
+    }
 }
