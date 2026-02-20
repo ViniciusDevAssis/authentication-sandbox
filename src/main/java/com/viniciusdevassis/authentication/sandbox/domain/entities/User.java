@@ -1,8 +1,7 @@
 package com.viniciusdevassis.authentication.sandbox.domain.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.viniciusdevassis.authentication.sandbox.domain.enums.AuthProvider;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,15 +25,29 @@ public class User implements UserDetails {
     private String email;
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    private AuthProvider provider;
+
     @Setter
     private UUID businessId;
 
-    public static User newUser(String name, String email, String password) {
+    public static User newLocalUser(String name, String email, String password) {
         User user = new User();
         user.setId(UUID.randomUUID());
         user.setName(name);
         user.setEmail(email);
         user.setPassword(password);
+        user.setProvider(AuthProvider.LOCAL);
+        return user;
+    }
+
+    public static User newGoogleUser(String name, String email) {
+        User user = new User();
+        user.setId(UUID.randomUUID());
+        user.setName(name);
+        user.setEmail(email);
+        user.setPassword(null);
+        user.setProvider(AuthProvider.GOOGLE);
         return user;
     }
 
